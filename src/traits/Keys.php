@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: horat1us
- * Date: 4/10/17
- * Time: 10:51 PM
+ * Date: 4/11/17
+ * Time: 12:48 AM
  */
 
 namespace Horat1us\Arrays\Traits;
@@ -12,15 +12,18 @@ namespace Horat1us\Arrays\Traits;
 use Horat1us\Arrays\Collection;
 
 /**
- * Class Pop
+ * Class Keys
  * @package Horat1us\Arrays\Traits
  *
  *
  */
-trait Pop
+trait Keys
 {
-    public function pop()
+    /**
+     * @return int[]|string[]
+     */
+    public function keys() :array
     {
-        return array_pop($this->container);
+        return array_keys($this->container);
     }
 }

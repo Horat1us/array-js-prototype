@@ -2,31 +2,52 @@
 
 namespace Horat1us\Arrays;
 
+use Horat1us\Arrays\Traits\Concat;
 use Horat1us\Arrays\Traits\CopyWithin;
+use Horat1us\Arrays\Traits\Every;
 use Horat1us\Arrays\Traits\Fill;
+use Horat1us\Arrays\Traits\Filter;
+use Horat1us\Arrays\Traits\Find;
+use Horat1us\Arrays\Traits\FindIndex;
+use Horat1us\Arrays\Traits\ForEachTrait;
+use Horat1us\Arrays\Traits\Includes;
+use Horat1us\Arrays\Traits\IndexOf;
+use Horat1us\Arrays\Traits\Join;
+use Horat1us\Arrays\Traits\Keys;
+use Horat1us\Arrays\Traits\Map;
 use Horat1us\Arrays\Traits\Pop;
 use Horat1us\Arrays\Traits\Push;
+use Horat1us\Arrays\Traits\Reduce;
+use Horat1us\Arrays\Traits\ReduceRight;
 use Horat1us\Arrays\Traits\Reverse;
 use Horat1us\Arrays\Traits\Shift;
+use Horat1us\Arrays\Traits\Slice;
+use Horat1us\Arrays\Traits\Some;
 use Horat1us\Arrays\Traits\Sort;
 use Horat1us\Arrays\Traits\Splice;
 use Horat1us\Arrays\Traits\Unshift;
+use Horat1us\Arrays\Traits\Values;
 use Traversable;
 
 /**
  * Class Collection
  * @package Horat1us\Arrays
+ *
+ * @property-read integer $length
+ * @property-read array $array
  */
 class Collection implements \ArrayAccess, \Serializable, \IteratorAggregate, \Countable
 {
+    /** Modifying methods */
     use CopyWithin, Fill, Pop, Push, Reverse, Shift, Sort, Splice, Unshift;
+
+    /** Access methods */
+    use Concat, Includes, Join, Slice, IndexOf, ForEachTrait, Every, Some, Filter, Find, Keys, FindIndex, Map, Reduce, ReduceRight, Values;
 
     /**
      * @var array
      */
     protected $container;
-
-    public $length;
 
     public function __construct(...$args)
     {
@@ -48,25 +69,56 @@ class Collection implements \ArrayAccess, \Serializable, \IteratorAggregate, \Co
         } else {
             $this->container = $args;
         }
-        $this->initLength();
     }
+
+    // region Getters
 
     /**
      * Copying JS-like .length behavior
+     * @return integer|string
      */
-    protected function initLength()
+    public function getLength()
     {
         if (!$this->container) {
-            $this->length = 0;
-            return;
+            return 0;
         }
 
         $count = count($this->container);
         $keys = array_keys($this->container);
-        $this->length = (array_keys($this->container) === range(0, $count - 1))
+        return (array_keys($this->container) === range(0, $count - 1))
             ? $count
             : max($keys);
     }
+
+    /**
+     * @return array
+     */
+    public function getArray(): array
+    {
+        return $this->container;
+    }
+
+    // region Some magic
+
+    /**
+     * @param $name
+     * @return mixed
+     * @throws Exception
+     */
+    public function __get($name)
+    {
+        $methods = [
+            'length' => [$this, 'getLength'],
+            'array' => [$this, 'getArray'],
+        ];
+        if (!array_key_exists($name, $methods)) {
+            throw new Exception("Getting unknown property $name of " . get_called_class());
+        }
+        return call_user_func($methods[$name]);
+    }
+    // endregion
+
+    // endregion
 
     // region Statics
 
@@ -74,7 +126,7 @@ class Collection implements \ArrayAccess, \Serializable, \IteratorAggregate, \Co
      * @param array ...$args
      * @return static
      */
-    final public static function create(...$args)
+    public static function create(...$args)
     {
         return new static(...$args);
     }
@@ -85,7 +137,7 @@ class Collection implements \ArrayAccess, \Serializable, \IteratorAggregate, \Co
      * @param object|null $thisArg
      * @return Collection
      */
-    final public static function from(array $arrayLike, \Closure $mapFn = null, object $thisArg = null): Collection
+    public static function from(array $arrayLike, \Closure $mapFn = null, object $thisArg = null): Collection
     {
         if ($mapFn) {
             if ($thisArg) {
@@ -100,7 +152,7 @@ class Collection implements \ArrayAccess, \Serializable, \IteratorAggregate, \Co
      * @param mixed $obj
      * @return bool
      */
-    final public static function isArray($obj): bool
+    public static function isArray($obj): bool
     {
         return is_array($obj) || $obj instanceof \ArrayAccess;
     }
@@ -109,7 +161,7 @@ class Collection implements \ArrayAccess, \Serializable, \IteratorAggregate, \Co
      * @param array ...$elements
      * @return static
      */
-    final public static function of(...$elements)
+    public static function of(...$elements)
     {
         $elements[] = null;
         $instance = new static(...$elements);

@@ -15,7 +15,7 @@ use Horat1us\Arrays\Collection;
  * Class Shift
  * @package Horat1us\Arrays\Traits
  *
- * @mixin Collection
+ *
  */
 trait Shift
 {

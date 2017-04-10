@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: horat1us
- * Date: 4/10/17
- * Time: 11:00 PM
+ * Date: 4/11/17
+ * Time: 12:59 AM
  */
 
 namespace Horat1us\Arrays\Traits;
@@ -12,19 +12,17 @@ namespace Horat1us\Arrays\Traits;
 use Horat1us\Arrays\Collection;
 
 /**
- * Class Reverse
+ * Class Values
  * @package Horat1us\Arrays\Traits
- *
- *
  */
-trait Reverse
+trait Values
 {
+
     /**
      * @return static
      */
-    public function reverse()
+    public function values(): array
     {
-        $this->container = array_reverse($this->container);
-        return $this;
+        return static::create(array_values($this->container));
     }
 }

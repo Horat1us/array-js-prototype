@@ -15,7 +15,7 @@ use Horat1us\Arrays\Collection;
  * Class Unshift
  * @package Horat1us\Arrays\Traits
  *
- * @mixin Collection
+ *
  */
 trait Unshift
 {
