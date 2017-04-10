@@ -9,6 +9,8 @@ use Horat1us\Arrays\Traits\Push;
 use Horat1us\Arrays\Traits\Reverse;
 use Horat1us\Arrays\Traits\Shift;
 use Horat1us\Arrays\Traits\Sort;
+use Horat1us\Arrays\Traits\Splice;
+use Horat1us\Arrays\Traits\Unshift;
 use Traversable;
 
 /**
@@ -17,7 +19,7 @@ use Traversable;
  */
 class Collection implements \ArrayAccess, \Serializable, \IteratorAggregate, \Countable
 {
-    use CopyWithin, Fill, Pop, Push, Reverse, Shift, Sort;
+    use CopyWithin, Fill, Pop, Push, Reverse, Shift, Sort, Splice, Unshift;
 
     /**
      * @var array
