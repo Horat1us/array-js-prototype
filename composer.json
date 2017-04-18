@@ -25,5 +25,8 @@
         "psr-4": {
             "Horat1us\\Arrays\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "phpunit": "./vendor/bin/phpunit;"
     }
 }
