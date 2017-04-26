@@ -25,13 +25,18 @@ trait Find
      * @param object|null $thisArg
      * @return mixed|null
      */
-    public function find(\Closure $callback, object $thisArg = null): bool
+    public function find(\Closure $callback, object $thisArg = null)
     {
+        if($thisArg) {
+            $callback->bindTo($thisArg);
+        }
+
         foreach ($this->container as $index => $value) {
             if ($callback($value, $index, $this->container)) {
                 return $value;
             }
         }
+
         return null;
     }
 }
