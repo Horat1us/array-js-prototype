@@ -23,6 +23,6 @@ trait Values
      */
     public function values(): array
     {
-        return static::create(array_values($this->container));
+        return (array_values($this->container));
     }
 }

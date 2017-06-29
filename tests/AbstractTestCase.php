@@ -1,6 +1,9 @@
 <?php
 
+
 namespace Horat1us\Arrays\Tests;
+
+
 
 /**
  * Created by PhpStorm.
@@ -8,7 +11,7 @@ namespace Horat1us\Arrays\Tests;
  * Date: 4/10/17
  * Time: 10:24 PM
  */
-abstract class AbstractTestCase extends \PHPUnit_Framework_TestCase
+abstract class AbstractTestCase extends \PHPUnit\Framework\TestCase
 {
     protected function assertCollectionEqual(\Horat1us\Arrays\Collection $collection, array $array)
     {
