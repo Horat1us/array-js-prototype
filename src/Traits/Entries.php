@@ -29,10 +29,16 @@ trait Entries
 
         $result=[];
 
-        for($i=0;$i<$this->container->length;$i++)
+        if($this->container)
         {
-            $result[$i]="".$keys[$i].", ".$this->container[$i];
+            $i=0;
+            foreach ($this->container as $item)
+            {
+                $result[$i]="".$keys[$i].", '".$item."'";
+                $i++;
+            }
         }
+
 
         return Collection::create($result);
     }

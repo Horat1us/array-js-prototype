@@ -14,9 +14,15 @@ use PHPUnit\Framework\TestCase;
 
 class EntriesTest extends AbstractTestCase
 {
-    public function testCase()
+    public function testCaseOne()
     {
         $collection=Collection::create([2,3,1]);
-        $this->assertEquals(Collection::create(["0, 2","1, 3","2, 1"]),$collection->entries());
+        $this->assertEquals(Collection::create(["0, '2'","1, '3'","2, '1'"]),$collection->entries());
+    }
+
+    public function testCaseTwo()
+    {
+        $collection=Collection::create(["x"=>"one","two","three"]);
+        $this->assertEquals(Collection::create(["x, 'one'","0, 'two'","1, 'three'"]),$collection->entries());
     }
 }

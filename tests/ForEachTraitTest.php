@@ -15,12 +15,23 @@ use PHPUnit\Framework\TestCase;
 
 class ForEachTraitTest extends AbstractTestCase
 {
-    public function testCaseOne()
+    public function testCaseInt()
     {
         $collection=Collection::create([10,22,31,67,26]);
-        $collection->forEach(function ($value){
-             $value=5;
+
+        $collection->forEach(function (&$value){
+            $value=$value+5;
         });
+
         $this->assertEquals(Collection::create([15,27,36,72,31]),$collection);
+    }
+
+    public function testCaseString()
+    {
+        $collection=Collection::create(["one","two","three","four","five"]);
+        $collection->forEach(function (&$value){
+            $value=$value."_";
+        });
+        $this->assertEquals(Collection::create(["one_","two_","three_","four_","five_"]),$collection);
     }
 }

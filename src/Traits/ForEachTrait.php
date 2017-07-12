@@ -32,5 +32,6 @@ trait ForEachTrait
         }
 
         array_walk($this->container, $callback, $this->container);
+
     }
 }
