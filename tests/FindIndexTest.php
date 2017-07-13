@@ -14,7 +14,7 @@ use PHPUnit\Framework\TestCase;
 
 class FindIndexTest extends AbstractTestCase
 {
-    public function testCaseOne()
+    public function testYes()
     {
         $collection=Collection::create([1,2,3,4,5]);
         $this->assertEquals(1,$collection->findIndex(function ($value){
@@ -22,7 +22,7 @@ class FindIndexTest extends AbstractTestCase
         }));
     }
 
-    public function testCaseTwo()
+    public function testNo()
     {
         $collection=Collection::create([1,2,3,4,5]);
         $this->assertEquals(-1,$collection->findIndex(function ($value){

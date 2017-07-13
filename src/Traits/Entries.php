@@ -23,10 +23,10 @@ trait Entries
      * @param array ...$values
      * @return Collection
      */
-    public function entries()
+
+    public function entries():Collection
     {
         $keys=$this->keys();
-
         $result=[];
 
         if($this->container)
@@ -38,7 +38,6 @@ trait Entries
                 $i++;
             }
         }
-
 
         return Collection::create($result);
     }
