@@ -21,10 +21,10 @@ trait Entries
 {
     /**
      * @param array ...$values
-     * @return Collection
+     * @return \ArrayIterator
      */
 
-    public function entries():Collection
+    public function entries():\ArrayIterator
     {
         $keys=$this->keys();
         $result=[];
@@ -34,11 +34,11 @@ trait Entries
             $i=0;
             foreach ($this->container as $item)
             {
-                $result[$i]="".$keys[$i].", '".$item."'";
+                $result[$i]="".$keys[$i]." => '".$item."'";
                 $i++;
             }
         }
 
-        return Collection::create($result);
+        return new \ArrayIterator($result);
     }
 }
