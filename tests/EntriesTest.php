@@ -17,12 +17,12 @@ class EntriesTest extends AbstractTestCase
     public function testCaseInt()
     {
         $collection=Collection::create([2,3,1]);
-        $this->assertEquals(new \ArrayIterator(["0 => '2'","1 => '3'","2 => '1'"]),$collection->entries());
+        $this->assertEquals(new \ArrayIterator(["0"=>2,"1"=>3,"2"=>1]),$collection->entries());
     }
 
     public function testCaseString()
     {
         $collection=Collection::create(["x"=>"one","two","three"]);
-        $this->assertEquals(new \ArrayIterator(["x => 'one'","0 => 'two'","1 => 'three'"]),$collection->entries());
+        $this->assertEquals(new \ArrayIterator(["x" => 'one',0 => 'two',1 => 'three']),$collection->entries());
     }
 }

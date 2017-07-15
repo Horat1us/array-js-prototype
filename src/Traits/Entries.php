@@ -34,7 +34,7 @@ trait Entries
             $i=0;
             foreach ($this->container as $item)
             {
-                $result[$i]="".$keys[$i]." => '".$item."'";
+                $result[$keys[$i]]=$item;
                 $i++;
             }
         }
