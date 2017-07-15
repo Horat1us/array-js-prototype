@@ -3,7 +3,7 @@ namespace Horat1us\Arrays\Tests;
 /**
  * Class ConstructorTest
  */
-class ConstructorTest extends \PHPUnit_Framework_TestCase
+class ConstructorTest extends AbstractTestCase
 {
     public function testWithFewElements()
     {

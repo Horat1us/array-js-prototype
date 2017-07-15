@@ -16,7 +16,7 @@ class PopTest extends AbstractTestCase
 
     public function testPop()
     {
-        $collection = Collection::create([1, 2, 3,]);
+        $collection = Collection::create([1, 2, 3]);
         for ($i = 2; $i > 0; $i--) {
             $this->assertEquals($i+1, $collection->pop());
             $this->assertCount($i, $collection);

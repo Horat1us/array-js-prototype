@@ -24,7 +24,7 @@ trait IndexOf
      * @param $fromIndex
      * @return bool
      */
-    public function indexOf($searchElement, $fromIndex)
+    public function indexOf($searchElement, $fromIndex=0)
     {
         $fromIndex = $fromIndex !== null
             ? ($fromIndex < 0 ? max($this->count() + $fromIndex, 0) : $fromIndex)

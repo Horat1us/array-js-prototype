@@ -24,13 +24,13 @@ trait FindIndex
      * @param object|null $thisArg
      * @return mixed|null
      */
-    public function findIndex(\Closure $callback, object $thisArg = null): bool
+    public function findIndex(\Closure $callback, object $thisArg = null): int
     {
         foreach ($this->container as $index => $value) {
             if ($callback($value, $index, $this->container)) {
                 return $index;
             }
         }
-        return null;
+        return -1;
     }
 }

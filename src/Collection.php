@@ -4,6 +4,7 @@ namespace Horat1us\Arrays;
 
 use Horat1us\Arrays\Traits\Concat;
 use Horat1us\Arrays\Traits\CopyWithin;
+use Horat1us\Arrays\Traits\Entries;
 use Horat1us\Arrays\Traits\Every;
 use Horat1us\Arrays\Traits\Fill;
 use Horat1us\Arrays\Traits\Filter;
@@ -25,6 +26,7 @@ use Horat1us\Arrays\Traits\Slice;
 use Horat1us\Arrays\Traits\Some;
 use Horat1us\Arrays\Traits\Sort;
 use Horat1us\Arrays\Traits\Splice;
+use Horat1us\Arrays\Traits\ToString;
 use Horat1us\Arrays\Traits\Unshift;
 use Horat1us\Arrays\Traits\Values;
 use Traversable;
@@ -42,7 +44,7 @@ class Collection implements \ArrayAccess, \Serializable, \IteratorAggregate, \Co
     use CopyWithin, Fill, Pop, Push, Reverse, Shift, Sort, Splice, Unshift;
 
     /** Access methods */
-    use Concat, Includes, Join, Slice, IndexOf, ForEachTrait, Every, Some, Filter, Find, Keys, FindIndex, Map, Reduce, ReduceRight, Values;
+    use Concat, Includes, Join, Slice, IndexOf, ForEachTrait, Every, Some, Filter, Find, Keys, FindIndex, Map, Reduce, ReduceRight, Values, ToString, Entries;
 
     /**
      * @var array
